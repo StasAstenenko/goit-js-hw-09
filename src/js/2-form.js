@@ -1,7 +1,9 @@
 const feedbackElem = document.querySelector('.feedback-form');
-const textarea = feedbackElem.querySelector('textarea');
+const textareaElem = feedbackElem.querySelector('textarea');
+const inputElem = feedbackElem.querySelector('input')
 
 feedbackElem.addEventListener('input', () => {
+
     const form = new FormData(feedbackElem);
     const email = form.get('email');
     const message = form.get('message');
@@ -15,9 +17,11 @@ feedbackElem.addEventListener('input', () => {
 feedbackElem.addEventListener('submit', e => {
   e.preventDefault();
 
+  if (textareaElem.value === '' || inputElem.value === '') return;
+
   const formData = new FormData(feedbackElem);
-  const email = formData.get('email');
-  const message = formData.get('message');
+  const email = formData.get('email').trim();
+  const message = formData.get('message').trim();
   const data = { email, message };
 
   console.log(data);
