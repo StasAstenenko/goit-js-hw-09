@@ -5,8 +5,8 @@ const inputElem = feedbackElem.querySelector('input')
 feedbackElem.addEventListener('input', () => {
 
     const form = new FormData(feedbackElem);
-    const email = form.get('email');
-    const message = form.get('message');
+    const email = form.get('email').trim();
+    const message = form.get('message').trim();
     const formData = {
         email,
         message,
@@ -17,11 +17,13 @@ feedbackElem.addEventListener('input', () => {
 feedbackElem.addEventListener('submit', e => {
   e.preventDefault();
 
-  if (textareaElem.value === '' || inputElem.value === '') return;
-
   const formData = new FormData(feedbackElem);
   const email = formData.get('email').trim();
   const message = formData.get('message').trim();
+  
+
+  if (textareaElem.value.trim() === '' || inputElem.value.trim() === '') return alert('Fill please all fields');
+
   const data = { email, message };
 
   console.log(data);
